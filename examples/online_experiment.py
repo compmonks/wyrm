@@ -11,7 +11,7 @@ import numpy as np
 
 # change this to the path of mushu if you don't have it in your
 # PYTHONPATH already
-sys.path.append('../../mushu')
+sys.path.append('../../mushu_py35')
 sys.path.append('../')
 
 import libmushu
@@ -27,10 +27,10 @@ logger = logging.getLogger(__name__)
 REALTIME = False
 
 
-TRAIN_DATA = 'data/BCI_Comp_III_Wads_2004/Subject_A_Train.mat'
-TEST_DATA = 'data/BCI_Comp_III_Wads_2004/Subject_A_Test.mat'
+TRAIN_DATA = 'data/BCIComp3/dataset_2/BCI_Comp_III_Wads_2004/Subject_A_Train.mat'
+TEST_DATA = 'data/BCIComp3/dataset_2/BCI_Comp_III_Wads_2004/Subject_A_Test.mat'
 
-CHANNEL_DATA = 'examples/data/BCI_Comp_III_Wads_2004/eloc64.txt'
+CHANNEL_DATA = 'data/BCIComp3/dataset_2/BCI_Comp_III_Wads_2004/eloc64.txt'
 
 TRUE_LABELS = "WQXPLZCOMRKO97YFZDEZ1DPI9NNVGRQDJCUVRMEUOOOJD2UFYPOO6J7LDGYEGOA5VHNEHBTXOO1TDOILUEE5BFAEEXAW_K4R3MRU"
 
@@ -142,14 +142,14 @@ def online_experiment(amp, cfy):
         # calculate the current accuracy
         if len(endresult) > 0:
             acc = np.count_nonzero(np.array(endresult) == np.array(list(TRUE_LABELS.lower()[:len(endresult)]))) / len(endresult)
-            print "Current accuracy:", acc * 100
+            print("Current accuracy:", acc * 100)
         if len(endresult) == len(TRUE_LABELS):
             break
         #logger.debug("Result: %s" % result)
-        print 1000 * (time.time() - t0)
+        print(1000 * (time.time() - t0))
 
     acc = np.count_nonzero(np.array(endresult) == np.array(list(TRUE_LABELS.lower()[:len(endresult)]))) / len(endresult)
-    print "Accuracy:", acc * 100
+    print("Accuracy:", acc * 100)
 
     amp.stop()
 

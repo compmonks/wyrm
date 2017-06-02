@@ -5,7 +5,8 @@ from __future__ import division
 
 import time
 import logging
-import cPickle as pickle
+#import cPickle as pickle
+import pickle
 import sys
 import argparse
 
