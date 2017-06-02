@@ -563,7 +563,8 @@ class BlockBuffer(object):
         else:
             marker_orig = self.dat.markers[:]
             # number of samples to return
-            n = (self.dat.data.shape[0] // self.samples) * self.samples
+            #n = (self.dat.data.shape[0] // self.samples) * self.samples
+            n = int((self.dat.data.shape[0] // self.samples) * self.samples)
             # first part
             dat1 = self.dat.copy()
             dat1.data = dat1.data[:n]
