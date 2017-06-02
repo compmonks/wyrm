@@ -485,8 +485,9 @@ def load_bcicomp3_ds2(filename):
     markers.extend(targets)
     markers.extend(nontargets)
     markers.extend(stimulus_code)
-    markers.sort()
-    dat.markers = markers[:]
+    #markers.sort()
+    #dat.markers = markers[:]
+    dat.markers = sorted(markers[:],key=lambda x: x[0])
     return dat
 
 
@@ -557,8 +558,8 @@ class PyffComm(object):
                 'data' : data,
                 'commands' : [[cmd, dict()]]}
         json_str = json.dumps(data)
-        self.socket.sendto(json_str, (self.host, self.port))
-
+        #self.socket.sendto(json_str, (self.host, self.port))
+        self.socket.sendto(json_str.encode('utf-8'), (self.host, self.port))
     def send_control_signal(self, variables):
         """Send a control signal to the running feedback.
 
